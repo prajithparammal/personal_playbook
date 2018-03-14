@@ -1,0 +1,22 @@
+---
+- name: Prepare ESXi installer ISO
+  hosts: localhost
+  gather_facts: True
+  tasks:
+   - name: Ensure xorriso is intalled
+     package:
+      name: xorriso
+      state: present
+   - name: Edit boot.cfg
+     replace:
+      dest: /tmp/ESX/boot.cfg
+      regexp: 'kernelopt=runweasel'
+      replace: 'kernelopt=ks=file://etc/vmware/weasel/KS.CFG'
+   - name: insert customks.tgz in boot.cfg modules section
+     replace:
+      dest: /tmp/ESX/boot.cfg
+      regexp: 'imgpayld.tgz$'
+      replace: 'imgpayld.tgz --- /customks.tgz'
+   - name: Creating CUSTOM ESXI ISO
+     shell:
+       cmd: sh /root/MSV_DEPLOY/scripts/gen_iso.sh

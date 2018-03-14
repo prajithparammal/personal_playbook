@@ -1,0 +1,4 @@
+---
+- name: Generating ESXI KS FILE
+  template: src=esxi.j2 dest=files/{{item.esxiHostname}}.cfg
+  with_items: "{{ PHY_ESX }}"

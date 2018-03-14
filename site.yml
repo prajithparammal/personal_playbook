@@ -1,0 +1,6 @@
+---
+- name: CREATE KS CONFIG FILE FOR PHYSICAL ESXI
+  hosts: localhost
+  roles:
+   - esxi
+- import_playbook: playbook/prepareISOInstaller.yml
