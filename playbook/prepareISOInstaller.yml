@@ -19,4 +19,4 @@
       replace: 'imgpayld.tgz --- /customks.tgz'
    - name: Creating CUSTOM ESXI ISO
      shell:
-       cmd: sh /root/MSV_DEPLOY/scripts/gen_iso.sh
+       cmd: sh /WORKPLACE/MSV_DEPLOY/scripts/gen_iso.sh

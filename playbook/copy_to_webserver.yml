@@ -1,0 +1,11 @@
+---
+- name: Uploading ISO to WEB SERVER
+  hosts: WEB_SRV
+  tasks:
+    - copy:
+        src: /WORKPLACE/MSV_DEPLOY/files/
+        dest: /var/www/html/
+    - name: Creating CUSTOM ESXI ISO
+      shell:
+       cmd: sh /WORKPLACE/MSV_DEPLOY/scripts/gen_ilo_auto_mount.sh
+

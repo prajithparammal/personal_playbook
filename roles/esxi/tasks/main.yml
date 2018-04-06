@@ -1,4 +1,9 @@
 ---
-- name: Generating ESXI KS FILE
-  template: src=esxi.j2 dest=files/{{item.esxiHostname}}.cfg
+- name: GENERATING ESXI KS  FILES 
+  template: src=esxi.j2 dest=/WORKPLACE/MSV_DEPLOY/files/{{item.esxiHostname}}.cfg
   with_items: "{{ PHY_ESX }}"
+
+- name: CREATE YML FOR ESXI ISO AUTO MOUNT IN ILO
+  template: src=auto_mount.j2 dest=/WORKPLACE/MSV_DEPLOY/roles/esxi/files/{{item.esxiHostname}}.yml
+  with_items: "{{ PHY_ESX }}"
+

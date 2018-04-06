@@ -1,0 +1,11 @@
+- hosts: {{item.esxiHostname}}
+  gather_facts: no
+  strategy: debug
+  tasks:
+    - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
+      hpilo_boot:
+        host: {{item.esxiHostname}}
+        login: ILOadmin
+        password: iloHP1nvent
+        media: cdrom
+        image: "http://130.175.94.25/{{item.esxiHostname}}.cfg.iso"

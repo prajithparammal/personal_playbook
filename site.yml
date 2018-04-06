@@ -4,3 +4,5 @@
   roles:
    - esxi
 - import_playbook: playbook/prepareISOInstaller.yml
+#- import_playbook: playbook/copy_to_webserver.yml
+#- import_playbook: playbook/ilo_auto_mount.yml

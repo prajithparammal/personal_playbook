@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /root/MSV_DEPLOY/files/
+cd /WORKPLACE/MSV_DEPLOY/files/
 for i in `ls *.cfg`; do
 rm -f KS.CFG etc/vmware/weasel/* /tmp/ESX/customks.tgz
 cp -f $i KS.CFG; 

@@ -1,27 +1,20 @@
 ---
-ISO_LOC:
- - esxIso: '../files/VMware-ESXi-6.0.0-Update3.iso'
-   vcIso: '../files/ISO/VMware-VCSA-all-6.iso'
+#ISO_LOC:
+# - esxIso: '../files/VMware-ESXi-6.0.0-Update3.iso'
+#   vcIso: '../files/ISO/VMware-VCSA-all-6.iso'
 
 PHY_ESX:     
- - esxiHostname: DEFRVAHLD400
+ - esxiHostname: 130.175.202.99
    ip: 10.99.186.11
    mask: 255.255.255.0
    gw: 10.99.186.1
    vmotion_ip: 10.99.122.11
    vmotion_mask: 255.255.255.0
    
- - esxiHostname: DEFRVAHLD401
-   ip: 10.99.186.12
-   mask: 255.255.255.0
-   gw: 10.99.186.1
-   vmotion_ip: 10.99.122.12
-   vmotion_mask: 255.255.255.0
-   
-   
- - esxiHostname: DEFRVAHLD410
-   ip: 10.99.186.14
-   mask: 255.255.255.0
-   gw: 10.99.186.1
-   vmotion_ip: 10.99.122.14
-   vmotion_mask: 255.255.255.0
+# - esxiHostname: DEFRVAHLD401
+#   ip: 10.99.186.12
+#   mask: 255.255.255.0
+#   gw: 10.99.186.1
+#   vmotion_ip: 10.99.122.12
+#   vmotion_mask: 255.255.255.0
+#   
