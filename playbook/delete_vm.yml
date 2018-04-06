@@ -1,4 +1,6 @@
-- name: Deploy linux VM from Template
+# Remove a vm from vSphere
+# The VM must be powered_off or you need to use force to force a shutdown
+- name: Delete VMs listed in DEL_VMS from vCenter 
   hosts: vcenter
   gather_facts: no
   connection: local
@@ -6,16 +8,11 @@
     - name: Testing gater facts from vSphere
       vsphere_guest:
         vcenter_hostname: "{{ vcenter_hostname }}"
-        validate_certs: no
         username: "{{ vcenter_user }}"
         password: "{{ vcenter_pass }}"
         guest: "{{ item }}"
-        from_template: yes
-        template_src: rhel-72-template
-#        cluster: MainCluster
-#        resource_pool: "/Resources"
-        esxi:
-          datacenter: Lab
-          hostname: "{{ esxi_hostname }}"
+        state: absent
+        force: yes
+        validate_certs: False
       with_inventory_hostnames:
-        - NEW_VMS
+        - DEL_VMS

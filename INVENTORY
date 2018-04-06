@@ -3,6 +3,7 @@
 #ansible_ssh_user=vagrant 
 #ansible_ssh_pass=vagrant
 
+################################## Input for playbook lux_vm_deploy_template.yml
 [vcenter]
 localhost
 [vcenter:vars]
@@ -11,14 +12,35 @@ vcenter_user=administrator@vsphere.local
 vcenter_pass=7ujm*IK<
 esxi_hostname=130.175.94.39
 
+[NEW_VMS]
+server1
+server2
+server3
+server4
+server5
+server6
 
+[DEL_VMS]
+server1
+server2
+server3
+server4
+server5
+server6
+
+
+################################################################################
+
+## Input for playbook hpiloautoboot.yml
 [ILO]
 130.175.202.99  
 [ILO:vars]
 ansible_ssh_user=prajith
 ansible_ssh_pass=prajirk0 
 ansible_connection=local
-strategy=debug
+#strategy=debug
+
+
 
 [local]
 localhost
