@@ -1,0 +1,19 @@
+- name: Deploy linux VM from Template
+  hosts: vcenter
+  connection: local
+  tasks:
+    - name: Testing gater facts from vSphere
+      vsphere_guest:
+        vcenter_hostname: "{{ vcenter_hostname }}"
+        validate_certs: no
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        guest: "{{ item }}"
+        from_template: yes
+        template_src: rhel-72-template
+        esxi:
+          datacenter: Lab
+          hostname: "{{ esxi_hostname }}"
+      with_items:
+       - server01
+       - server02

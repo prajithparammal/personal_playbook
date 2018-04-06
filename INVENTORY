@@ -3,7 +3,13 @@
 #ansible_ssh_user=vagrant 
 #ansible_ssh_pass=vagrant
 
-
+[vcenter]
+localhost
+[vcenter:vars]
+vcenter_hostname=130.175.94.57
+vcenter_user=administrator@vsphere.local
+vcenter_pass=7ujm*IK<
+esxi_hostname=130.175.94.39
 
 
 [ILO]
