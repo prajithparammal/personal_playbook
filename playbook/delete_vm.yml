@@ -11,7 +11,7 @@
   gather_facts: no
   connection: local
   tasks:
-    - name: Testing gater facts from vSphere
+    - name: Removing VMs listed in DEL_VMS
       vsphere_guest:
         vcenter_hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_user }}"

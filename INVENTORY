@@ -14,19 +14,9 @@ esxi_hostname=130.175.94.39
 
 [NEW_VMS]
 server1
-server2
-server3
-server4
-server5
-server6
 
 [DEL_VMS]
 server1
-server2
-server3
-server4
-server5
-server6
 
 
 ################################################################################

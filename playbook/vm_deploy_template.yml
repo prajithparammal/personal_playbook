@@ -9,7 +9,7 @@
   gather_facts: no
   connection: local
   tasks:
-    - name: Testing gater facts from vSphere
+    - name: Creating VM from input template
       vsphere_guest:
         vcenter_hostname: "{{ vcenter_hostname }}"
         validate_certs: no
@@ -20,6 +20,8 @@
         template_src: rhel-72-template
 #        cluster: MainCluster
 #        resource_pool: "/Resources"
+#        vm_extra_config: 
+#           folder: MyFolder
         esxi:
           datacenter: Lab
           hostname: "{{ esxi_hostname }}"
