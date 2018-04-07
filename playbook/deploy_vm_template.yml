@@ -17,7 +17,7 @@
         password: "{{ vcenter_pass }}"
         guest: "{{ item }}"
         from_template: yes
-        template_src: rhel-72-template
+        template_src: "{{ template_file }}"
 #        cluster: MainCluster
 #        resource_pool: "/Resources"
 #        vm_extra_config: 

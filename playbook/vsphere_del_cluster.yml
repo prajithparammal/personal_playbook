@@ -1,0 +1,37 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Auto delete VM cluster from Inventory list.
+#Sample usage : ansible-playbook yml script, Run the script as below by populating required input in INVENTORY FILE
+# $ ansible-playbook -i INVENTORY playbook/vsphere_del_cluster.yml
+
+
+- name: REMOVING VM CLUSTER FORM INVENTORY LIST
+  hosts: vcenter
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: DISABLING HA, DRS, VSAN FOR VM CLUSTER
+      vmware_cluster:
+        hostname: "{{ vcenter_hostname }}"
+        validate_certs: no
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        datacenter_name: Lab
+        cluster_name: "{{ item }}"
+        enable_ha: no
+        enable_drs: no
+        enable_vsan: no
+#        state: absent
+      with_inventory_hostnames:
+        - DEL_CLUSTER
+    - name: REMOVING VM CLUSTER
+      vmware_cluster:
+        hostname: "{{ vcenter_hostname }}"
+        validate_certs: no
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        datacenter_name: Lab
+        cluster_name: "{{ item }}"
+        state: absent
+      with_inventory_hostnames:
+        - DEL_CLUSTER

@@ -1,0 +1,24 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Auto Deploy VM cluster from Inventory list.
+#Sample usage : ansible-playbook yml script, Run the script as below by populating required input in INVENTORY FILE
+# $ ansible-playbook -i INVENTORY playbook/vsphere_add_cluster.yml
+
+- name: Creating VM CLUSTER FORM INVENTORY LIST
+  hosts: vcenter
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Creating VM CLUSTER 
+      vmware_cluster: 
+        hostname: "{{ vcenter_hostname }}"
+        validate_certs: no
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        datacenter_name: Lab
+        cluster_name: "{{ item }}"
+        enable_ha: yes
+        enable_drs: yes
+        enable_vsan: yes
+      with_inventory_hostnames:
+        - NEW_CLUSTER

@@ -3,7 +3,7 @@
 #ansible_ssh_user=vagrant 
 #ansible_ssh_pass=vagrant
 
-################################## Input for playbook lux_vm_deploy_template.yml
+################################## Input for playbook deploy_vm_template.yml && delete_vm.yml
 [vcenter]
 localhost
 [vcenter:vars]
@@ -11,12 +11,30 @@ vcenter_hostname=130.175.94.57
 vcenter_user=administrator@vsphere.local
 vcenter_pass=7ujm*IK<
 esxi_hostname=130.175.94.39
+template_file=rhel-72-template
 
 [NEW_VMS]
 server1
 
+################################## Input for delete_vm.yml
+
 [DEL_VMS]
 server1
+
+
+################################## Input for vsphere_add_cluster.yml
+[NEW_CLUSTER]
+PROD_CLUST
+DEV_CLUST
+UAT_CLUST
+
+
+################################## Input for vsphere_del_cluster.yml
+[DEL_CLUSTER]
+PROD_CLUST
+DEV_CLUST
+UAT_CLUST
+
 
 
 ################################################################################
