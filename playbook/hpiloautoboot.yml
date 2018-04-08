@@ -1,12 +1,14 @@
-- hosts: all
+- hosts: ILO_LIST
   gather_facts: no
   strategy: debug
+  connection: local
   tasks:
     - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
       hpilo_boot:
-        host: 130.175.202.99
-        login: ILOadmin
-        password: "iloHP1nvent"
+        host: "{{ item }}"
+        login: "{{ ilo_username }}"
+        password: "{{ ilo_pass }}"
         media: cdrom
-        image: "http://52.191.198.178:8080/VMware-ESXi-6.0.0-Update3.iso"
-      delegate_to: localhost
+        image: http://{{ iso_http_srv }}/{{ item }}.iso
+      with_inventory_hostnames:
+        - ILO_LIST

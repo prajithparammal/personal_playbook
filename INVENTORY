@@ -3,6 +3,16 @@
 #ansible_ssh_user=vagrant 
 #ansible_ssh_pass=vagrant
 
+
+
+#################################### Input for playbook hpiloautoboot.yml
+[ILO_LIST]
+130.175.202.99
+[ILO_LIST:vars]
+ilo_username=ILOadmin
+ilo_pass=iloHP1nvent
+iso_http_srv=130.175.94.25
+
 ################################## Input for playbook deploy_vm_template.yml && delete_vm.yml
 [vcenter]
 localhost
@@ -38,16 +48,6 @@ UAT_CLUST
 
 
 ################################################################################
-
-## Input for playbook hpiloautoboot.yml
-[ILO]
-130.175.202.99  
-[ILO:vars]
-ansible_ssh_user=prajith
-ansible_ssh_pass=prajirk0 
-ansible_connection=local
-#strategy=debug
-
 
 
 [local]
