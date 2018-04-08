@@ -1,3 +1,9 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Automount iso to ilo from Inventory list.
+#Sample usage : ansible-playbook yml script, Run the script as below by populating required input in INVENTORY FILE
+# $ ansible-playbook -i INVENTORY playbook/hpiloautoboot.yml
+
 - hosts: ILO_LIST
   gather_facts: no
   strategy: debug
@@ -10,5 +16,6 @@
         password: "{{ ilo_pass }}"
         media: cdrom
         image: http://{{ iso_http_srv }}/{{ item }}.iso
+        force: yes
       with_inventory_hostnames:
         - ILO_LIST

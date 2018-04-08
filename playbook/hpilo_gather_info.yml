@@ -1,0 +1,18 @@
+- hosts: ILO_LIST
+  gather_facts: no
+  strategy: debug
+  connection: local
+  tasks:
+    - name: Task to gather info from ILO
+      hpilo_facts:
+        host: "{{ item }}"
+        login: "{{ ilo_username }}"
+        password: "{{ ilo_pass }}"
+      with_inventory_hostnames:
+       - ILO_LIST
+
+
+#      when: cmdb_hwmodel.startswith('HP ')
+#      fail:
+#        msg: 'CMDB serial ({{ cmdb_serialno }}) does not match hardware serial ({{ hw_system_serial }}) !'
+#      when: cmdb_serialno != hw_system_serial

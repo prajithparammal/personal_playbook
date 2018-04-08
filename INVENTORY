@@ -45,9 +45,23 @@ PROD_CLUST
 DEV_CLUST
 UAT_CLUST
 
+################################# Input for add_esxiTOvcenter.yml
+[ESXI]
+localhost
+[ESXI:vars]
+vcenter_hostname=130.175.94.57
+vcenter_user=administrator@vsphere.local
+vcenter_pass=7ujm*IK<
+esxi_username=root
+esxi_password=gohelion
+clus_name=PROD_CLUST
+
+[ESXI_LIST]
+130.175.94.39
 
 
-################################################################################
+#################################
+
 
 
 [local]

@@ -1,0 +1,26 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Auto Adding esxi to vcsa  from Inventory list.
+#Sample usage : ansible-playbook yml script, Run the script as below by populating required input in INVENTORY FILE
+# $ ansible-playbook -i INVENTORY playbook/add_esxiTOvcenter.yml
+
+- name: Adding esxi to vcsa  from Inventory list
+  hosts: ESXI
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Adding ESXi to vCenter
+      vmware_host: 
+        hostname: "{{ vcenter_hostname }}"
+        validate_certs: no
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        datacenter_name: Lab
+        cluster_name: "{{ clus_name }}"
+        esxi_hostname: '{{ item }}'
+        esxi_username: '{{ esxi_username }}'
+        esxi_password: '{{ esxi_password }}'
+        state: present
+      with_inventory_hostnames:
+        - ESXI_LIST
+
