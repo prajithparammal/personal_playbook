@@ -59,25 +59,4 @@ clus_name=PROD_CLUST
 [ESXI_LIST]
 130.175.94.39
 
-
 #################################
-
-
-
-[local]
-localhost
-[local:vars]
-ansible_ssh_user=root
-ansible_ssh_pass=prajirko
-
-[azure_vm]
-52.191.198.178
-[azure_vm:vars]
-ansible_ssh_user=root
-ansible_ssh_pass=0p3r@t10n
-
-[WEB_SRV]
-130.175.94.25
-[WEB_SRV:vars]
-ansible_ssh_user=root
-ansible_ssh_pass=gohelion
