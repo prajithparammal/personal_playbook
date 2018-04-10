@@ -1,0 +1,26 @@
+---
+NEW_VMS:
+ VM1:
+   hostname: Server1
+   pgname: New-VM_Network
+   ip: 192.168.10.11
+   netmask: 255.255.255.0
+   gateway: 192.168.10.1
+   dsk_size: 60
+   datastore: datastore1
+ VM2:
+   hostname: Server2
+   pgname: "New-VM_Network"
+   ip: 192.168.10.12
+   netmask: 255.255.255.0
+   gateway: 192.168.10.1
+   dsk_size: 60
+   datastore: datastore2
+ VM3:
+   hostname: Server3
+   pgname: VM Network
+   ip: 192.168.10.13
+   netmask: 255.255.255.0
+   gateway: 192.168.10.1
+   dsk_size: 60
+   datastore: datastore3
