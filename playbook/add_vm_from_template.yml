@@ -1,0 +1,33 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Auto Deploy linux VM from Template.
+#Sample usage : ansible-playbook yml script, Run the script as below by populating required input in INVENTORY FILE
+# $ ansible-playbook -i INVENTORY playbook/vm_deploy_template.yml
+
+- name: Deploy VM from Template
+  hosts: vcenter
+  gather_facts: no
+  vars_files:
+    - /WORKPLACE/MSV_DEPLOY/new_vm.yml
+  connection: local
+  tasks:
+    - name: Creating VM from input template
+      vmware_guest:
+         hostname: "{{ vcenter_hostname }}"
+         username: "{{ vcenter_user }}"
+         password: "{{ vcenter_pass }}"
+         validate_certs: no
+         datacenter: "{{ datacenter }}"
+         cluster: "{{ cluster }}"
+         name: "{{ item.value.hostname }}"
+         template: "{{ template_file }}"
+         networks:
+         - name: "{{ item.value.pgname }}"
+           ip: "{{ item.value.ip }}"
+           netmask: "{{ item.value.netmask }}"
+           gateway: "{{ item.value.gateway }}"
+         disk:
+         - size_gb: "{{ item.value.dsk_size }}"
+           type: thin
+           datastore: "{{ item.value.datastore }}"
+      with_dict: "{{ NEW_VMS }}"
