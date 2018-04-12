@@ -1,41 +1,34 @@
 pipeline {
     agent any
+    // agent {
+    //     dockerfile {
+    //         filename 'Dockerfile'
+    //         reuseNode true
+    //     }
+    // }
+
+    environment {
+        ANSIBLE_LIBRARY = '/oneview-ansible/library'
+        ANSIBLE_MODULE_UTILS = '/oneview-ansible/library/module_utils/'
+    }
 
     stages {
-        stage('Controller') {
+        stage('VCSA status') {
             steps {
-                sh 'ping -c 3 ctrl1'
+                sh 'ping -c 3 130.175.94.57'
             }
         }
-        stage('iLO') {
+
+        stage('Playbook Test') {
             steps {
-                sh 'ping -c 3 130.175.202.99'
+                ansiblePlaybook(credentialsId: '~/.ssh/id_rsa', inventory: 'examples/hosts', playbook: 'examples/oneview_server_profile_facts.yml')
+                // sh 'ansible-playbook examples/oneview_server_profile_facts.yml '
             }
         }
-        stage('ESXi') {
+        stage('oneview_automation_demo') {
             steps {
-                sh 'ping -c 3 esx1'
-            }
-        }
-        stage('VCSA') {
-            steps {
-                sh 'ping -c 3 vcsa1'
-                sh 'ping -c 3 localhost'
-            }
-        }
-        stage('OneView') {
-            steps {
-                sh 'ping -c 3 onev1'
-            }
-        }
-        stage('OneView-Ansible') {
-            steps {
-                sh 'ssh ctrl1 docker inspect --format="{{.State.Running}}" dazzling_hypatia'
-            }
-        }
-        stage('Jenkins') {
-            steps {
-                sh 'ssh ctrl1 docker inspect --format="{{.State.Running}}" quizzical_feynman'
+                 sh 'pwd && sh ansible/ONEVIEW/scripts/csvtoyml.sh'
+                ansiblePlaybook(credentialsId: '~/.ssh/id_rsa', inventory: 'ansible/ONEVIEW/files/inventory', playbook: 'ansible/ONEVIEW/main.yml')
             }
         }
     }
