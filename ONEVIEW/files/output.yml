@@ -1,0 +1,6 @@
+---
+ETH_NW:
+ NW1:
+    network_name: P1MSVmgmtvM
+    vlan: 2000
+    vlan: Data_NetworkSet_A

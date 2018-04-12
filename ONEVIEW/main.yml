@@ -1,0 +1,42 @@
+#author : prajith.parammal@dxc.com
+#Version : 1.0
+#Auto oneview deployment
+
+- name: Add  Ethernet Networks and associate it with network_set
+  hosts: localhost
+  vars:
+    fc_network_name_1: 'P1SAN'
+    fc_network_name_2: 'P2SAN'
+    config: "files/oneview_config.json"
+  vars_files:
+    - "files/output.yml"
+  gather_facts: no
+  connection: local
+  tasks:
+   - block:
+     - name: Create Ethernet Networks
+       oneview_ethernet_network:
+        config: "{{ config }}"
+        state: present
+        data:
+          name: '{{ item.value.network_name  }}'
+          vlanId: '{{ item.value.vlan }}'
+          ethernetNetworkType: Tagged
+          purpose: General
+          smartLink: Yes
+          privateNetwork: false
+          bandwidth:
+              maximumBandwidth: 20000
+              typicalBandwidth: 2500
+       with_dict: "{{ ETH_NW }}"
+
+   - block:
+     - name:  Create a Network Set
+       oneview_network_set:
+        config: "{{ config }}"
+        state: present
+        data:
+          name: '{{ item.value.network_set }}'
+          networkUris:
+            - '{{ item.value.network_name }}'  # can be a name
+       with_dict: "{{ ETH_NW }}"
